@@ -15,9 +15,8 @@ This process of repeating the same design at a continually decreasing scale
 	interesting and beautiful patterns. In this assignment we will use a
 	recursive branching function to create a fractal tree.
 
-Requirements
-
-* Use the Koch Snowflake program as a starting point for an TreeViewer class
+Requirements+
+++* Use the Koch Snowflake program as a starting point for an TreeViewer class
 	and a TreeComponent class.
 * The trunk of the tree needs four values: the X and Y of the starting point
 	and the X and Y of the end point. We will also have three member
