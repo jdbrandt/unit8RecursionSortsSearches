@@ -15,9 +15,9 @@ public class FractalTreePanel extends JPanel
 
 
     private static final Point2D.Double iPoint = new Point2D.Double(PANEL_WIDTH/2, PANEL_HEIGHT);
-    private static final double LENGTH = 200;
-    private static final double THETA = Math.PI/90;
-    private static final double MAX_ORDER = 10;
+    private static final double LENGTH = 100;
+    private static final double THETA = Math.PI/3;
+    private static final double MAX_ORDER = 15;
 
     private int current; //current order
 
@@ -40,7 +40,7 @@ public class FractalTreePanel extends JPanel
     public void drawFractal(int order, Point2D.Double iPoint, double length, double theta,
     Graphics2D g2)
     {
-        if (order < MAX_ORDER)
+        if (order < current)
         {
             double deltax = length*Math.sin(theta);
             double deltay = length*Math.cos(theta);
@@ -50,8 +50,8 @@ public class FractalTreePanel extends JPanel
             
             g2.draw(new Line2D.Double(iPoint,posPoint));
             g2.draw(new Line2D.Double(iPoint,negPoint));
-            drawFractal(order+1, posPoint, length/2, theta-THETA, g2);
-            drawFractal(order+1, negPoint, length/2, theta-THETA, g2);
+            drawFractal(order+1, posPoint, length/2+10, theta-THETA-order, g2);
+            drawFractal(order+1, negPoint, length/2+10, theta-THETA-order, g2);
         }
     }
     //-----------------------------------------------------------------
@@ -63,7 +63,7 @@ public class FractalTreePanel extends JPanel
 
         g.setColor(Color.green);
 
-        drawFractal(current, iPoint, LENGTH, 0, (Graphics2D) g);
+        drawFractal(0, iPoint, LENGTH, 0, (Graphics2D) g);
     }
 
     //-----------------------------------------------------------------
