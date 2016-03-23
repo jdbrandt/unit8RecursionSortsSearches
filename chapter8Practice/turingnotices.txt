@@ -1,0 +1,629 @@
+Turing’s Thesis
+Solomon Feferman
+
+I
+
+n the sole extended break from his life and varied career in England, Alan Turing spent the
+years 1936–1938 doing graduate work at
+Princeton University under the direction of
+Alonzo Church, the doyen of American logicians. Those two years sufficed for him to complete
+a thesis and obtain the Ph.D. The results of the thesis were published in 1939 under the title “Systems
+of logic based on ordinals” [23]. That was the first
+systematic attempt to deal with the natural idea of
+overcoming the Gödelian incompleteness of formal
+systems by iterating the adjunction of statements—
+such as the consistency of the system—that “ought
+to” have been accepted but were not derivable; in
+fact these kinds of iterations can be extended into
+the transfinite. As Turing put it beautifully in his
+introduction to [23]:
+The well-known theorem of Gödel
+(1931) shows that every system of logic
+is in a certain sense incomplete, but at
+the same time it indicates means
+whereby from a system L of logic a
+more complete system L may be obtained. By repeating the process we get
+a sequence L, L1 = L , L2 = L1 … each
+more complete than the preceding. A
+logic Lω may then be constructed in
+which the provable theorems are the
+totality of theorems provable with the
+help of the logics L, L1 , L2 , … Proceed-
+
+NOTICES
+
+OF THE
+
+Using an ingenious argument in pursuit of this
+aim, Turing obtained a striking yet equivocal partial completeness result that clearly called for further investigation. But he did not continue that
+himself, and it would be some twenty years before
+the line of research he inaugurated would be renewed by others. The paper itself received little attention in the interim, though it contained a number of original and stimulating ideas and though
+Turing’s name had by then been well established
+through his earlier work on the concept of effective computability.
+Here, in brief, is the story of what led Turing to
+Church, what was in his thesis, and what came
+after, both for him and for the subject.1
+
+From Cambridge to Princeton
+As an undergraduate at King’s College, Cambridge,
+from 1931 to 1934, Turing was attracted to many
+parts of mathematics, including mathematical logic.
+1 I have written about this at somewhat greater length in
+
+Solomon Feferman is professor of mathematics and philosophy emeritus at Stanford University. His email address is sf@csli.stanford.edu.
+
+2
+
+ing in this way we can associate a system of logic with any constructive ordinal. It may be asked whether such a
+sequence of logics of this kind is complete in the sense that to any problem
+A there corresponds an ordinal α such
+that A is solvable by means of the logic
+Lα .
+
+[10]; that material has also been incorporated as an introductory note to Turing’s 1939 paper in the volume,
+Mathematical Logic [25] of his collected works. In its biographical part I drew to a considerable extent on Andrew
+Hodges’ superb biography, Alan Turing: The Enigma [16].
+
+AMS
+
+VOLUME 53, NUMBER 10
+
+In 1935 Turing was elected a fellow of King’s College on the basis of a dissertation in probability theory, On the Gaussian error function, which contained his independent rediscovery of the central
+limit theorem. Earlier in that year he began to focus
+on problems in logic through his attendance in a
+course on that subject by the topologist M. H. A.
+(Max) Newman. One of the problems from Newman’s course that captured Turing’s attention was
+the Entscheidungsproblem, the question whether
+there exists an effective method to decide, given
+any well-formed formula of the pure first-order
+predicate calculus, whether or not it is valid in all
+possible interpretations (equivalently, whether or
+not its negation is satisfiable in some interpretation). This had been solved in the affirmative for
+certain special classes of formulas, but the general
+problem was still open when Turing began grappling with it. He became convinced that the answer
+must be negative, but that in order to demonstrate
+the impossibility of a decision procedure, he would
+have to give an exact mathematical explanation of
+what it means to be computable by a strictly mechanical process. He arrived at such an analysis by
+mid-April 1936 via the idea of what has come to
+be called a Turing machine, namely an idealized
+computational device following a finite table of instructions (in essence, a program) in discrete effective steps without limitation on time or space
+that might be needed for a computation. Furthermore, he showed that even with such unlimited capacities, the answer to the general Entscheidungsproblem must be negative. Turing quickly prepared
+a draft of his work entitled “On computable numbers, with an application to the Entscheidungsproblem”; Newman was at first skeptical of Turing’s
+analysis but then became convinced and encouraged its publication.
+Neither Newman nor Turing were aware at that
+point that there were already two other proposals
+under serious consideration for analyzing the general concept of effective computability: one by
+Gödel called general recursiveness, building on an
+idea of Herbrand, and the other by Church, in terms
+of what he called the λ-calculus.2 In answer to the
+question, “Which functions of natural numbers are
+effectively computable?”, the Herbrand-Gödel approach was formulated in terms of finite systems
+of equations from which the values of the functions
+are to be deduced using some elementary rules of
+2 The development of ideas about computability in this
+
+period by Herbrand, Gödel, Church, Turing, and Post has
+been much written about and can only be touched on
+here. For more detail I recommend the article by Kleene
+[17] and the articles by Hodges, Kleene, Gandy, and Davis
+in Part I of Herken’s collection [15], among others. One
+of the many good online sources with further links is
+at http://plato.stanford.edu/entries/churchturing/, by B. J. Copeland.
+
+NOVEMBER 2006
+
+inference; since the functions to be defined can
+occur on both sides of the equations, this constitutes a general form of recursion. Gödel explained
+this in lectures on the incompleteness results during his visit to the Princeton Institute for Advanced
+Study in 1934, lectures that were attended by
+Church and his students Stephen C. Kleene and
+J. Barkley Rosser. But Gödel regarded general recursiveness only as a “heuristic principle” and was
+not himself willing to commit to that proposed
+analysis. Meanwhile Church had been exploring a
+different answer to the same question in terms of
+his λ-calculus—a fragment of a quite general formalism for the foundation of mathematics, whose
+fundamental notion is that of arbitrary functions
+rather than arbitrary sets. The “λ” comes from
+Church’s formalism according to which if t[x] is an
+expression with one or more occurrences of a variable x , then λx.t[x] is supposed to denote a function f whose value f (s) for each s is the result,
+t[s/x] , of substituting s for x throughout t .3 In the
+λ-calculus, function application of one expression
+t to another s as argument is written in the form
+ts . Combining these, we have the basic evaluation
+axiom: (λx.t[x])s = t[s/x] .
+Using a representation of the natural numbers
+in the λ -calculus, a function f is said to be
+λ-definable if there is an expression t such that for
+each pair of numerals n and m, tn evaluates out
+to m if and only if f (n) = m . In conversations with
+Gödel, Church proposed λ -definability as the
+precise explanation of effective computability
+(“Church’s Thesis”), but in Gödel’s view that was
+“thoroughly unsatisfactory”. It was only through a
+chain of equivalences that ended up with Turing’s
+analysis that Gödel later came to accept it, albeit
+indirectly. The first link in the chain was forged with
+the proof by Church and Kleene that λ-definability is equivalent to general recursiveness. Thus
+when Church finally announced his “Thesis” in
+published form in 1936 [1], it was in terms of the
+latter. In that paper, Church applied his thesis to
+demonstrate the effective unsolvability of various
+mathematical and logical problems, including the
+decision problem for sufficiently strong formal
+systems. And then in his follow-up paper [2] submitted April 15, 1936—just around the time Turing was showing Newman his draft—Church proved
+the unsolvability of the Entscheidungsproblem for
+logic. When news of this work reached Cambridge
+a month later, the initial reaction was great disappointment at being scooped, but it was agreed that
+Turing’s analysis was sufficiently different to still
+warrant publication. After submitting it for publication toward the end of May 1936, Turing tacked
+3 One must avoid the “collision” of free and bound vari-
+
+ables in the process, i.e., no free variable z of s must end
+up within the scope of a “λz”; this can be done by renaming
+bound variables as necessary.
+
+NOTICES
+
+OF THE
+
+AMS
+
+3
+
+On Newman’s recommendation, Turing decided to
+spend a year studying with Church, and he applied for one of Princeton’s Procter fellowships. In
+the event he did not suceed in obtaining it, but even
+so he thought he could manage on his fellowship
+funds from King’s College of 300 pounds per
+annum, and so Turing came to Princeton at the end
+of September 1936. The Princeton mathematics
+department had already been a leader on the American scene when it was greatly enriched in the early
+1930s by the establishment of the Institute for Advanced Study. The two shared Fine Hall until 1940,
+so that the lines between them were blurred and
+there was significant interaction. Among the mathematical leading lights that Turing found on his arrival were Einstein, von Neumann, and Weyl at the
+Institute and Lefschetz in the department; the visitors that year included Courant and Hardy. In
+logic, he had hoped to find—besides Church—
+Gödel, Bernays, Kleene, and Rosser. Gödel had indeed commenced a second visit in the fall of 1935
+but left after a brief period due to illness; he was
+not to return until 1939. Bernays (noted as Hilbert’s
+collaborator on his consistency program) had vis-
+
+ited 1935–36, but did not visit the States again
+until after the war. Kleene and Rosser had received
+their Ph.D.s by the time Turing arrived and had left
+to take positions elsewhere. So he was reduced to
+attending Church’s lectures, which he found ponderous and excessively precise; by contrast, Turing’s native style was rough-and-ready and prone
+to minor errors, and it is a question whether
+Church’s example was of any benefit in this respect.
+They met from time to time, but apparently there
+were no sparks, since Church was retiring by nature and Turing was somewhat of a loner.
+In the spring of 1937, Turing worked up for
+publication a proof in greater detail of the equivalence of machine computability with λ-definability [22]. He also published two papers on group theory, including one on finite approximations of
+continuous groups that was of interest to von Neumann (cf. [24]). Luther P. Eisenhart, who was then
+head of the mathematics department, urged Turing to stay on for a second year and apply again
+for the Procter fellowship (worth US$2,000 p.a.).
+This time, supported by von Neumann who praised
+his work on almost periodic functions and continuous groups, Turing succeeded in obtaining the
+fellowship, and so decided to stay the extra year
+and do a Ph.D. under Church. Proposed as a thesis topic was the idea of ordinal logics that had been
+broached in Church’s course as a way to “escape’’
+Gödel’s incompleteness theorems.
+Turing, who had just turned 25, returned to
+England for the summer of 1937, where he devoted himself to three projects: finishing the computability/λ-definability paper, ordinal logics, and
+the Skewes number. As to the latter, Littlewood had
+shown that π (x) − li(x) changes sign infinitely
+often, with an argument by cases, according to
+whether the Riemann Hypothesis is true or not;
+prior to that it had been conjectured that
+π (n) < li(n) for all n, in view of the massive numerical evidence into the billions in support of
+that.6 In 1933 Skewes had shown that li(n) < π (n)
+for some n < 103 (34) (triple exponential to the
+base 10) if the Riemann Hypothesis is true. Turing
+hoped to lower Skewes’ bound or eliminate the
+Riemann Hypothesis; in the end he thought he had
+succeeded in doing both and prepared a draft but
+did not publish his work.7 He was to have a recurring interest in the R.H. in the following years, including devising a method for the practical computation of the zeros of the Riemann zeta function
+as explained in the article by Andrew R. Booker in
+this issue of the Notices. Turing also made good
+progress on his thesis topic and devoted himself
+
+4 Church’s review appeared in J. Symbolic Logic 2 (1937),
+
+6 li(x) is the (improper) integral from 0 to x of 1/logx and
+
+42–43.
+
+is asymptotic to π (x) , the number of primes < x .
+
+5 Gödel accepted the Church-Turing Thesis in that form
+
+7
+A paper based on Turing’s ideas, with certain corrections,
+was published after his death by Cohen and Mayhew [4].
+
+on an appendix in August of that year in which he
+sketched the proof of equivalence of computability by a machine in his sense with that of λ-definability, thus forging the second link in the chain of
+equivalences [21].
+In Church’s 1937 review of Turing’s paper, he
+wrote:
+As a matter of fact, there is involved
+here the equivalence of three different
+notions: computability by a Turing machine, general recursiveness in the sense
+of Herbrand-Gödel-Kleene, and λ-definability in the sense of Kleene and the
+present reviewer. Of these, the first has
+the advantage of making the identification with effectiveness in the ordinary (not explicitly defined) sense evident immediately… The second and
+third have the advantage of suitability
+for embodiment in a system of symbolic logic.4
+Thus was born what is now called the ChurchTuring Thesis, according to which the effectively
+computable functions are exactly those computable
+by a Turing machine.5 The (Church-)Turing Thesis
+is of course not to be confused with Turing’s thesis under Church, our main subject here.
+
+Turing in Princeton
+
+in a number of lectures and publications thereafter.
+
+4
+
+NOTICES
+
+OF THE
+
+AMS
+
+VOLUME 53, NUMBER 10
+
+full time to it when he returned to Princeton in the
+fall, so that he ended up with a draft containing the
+main results by Christmas of 1937. But then he
+wrote Philip Hall in March 1938 that the work on
+his thesis was “proving rather intractable, and I am
+always rewriting part of it.’’8 Later he wrote that
+“Church made a number of suggestions which resulted in the thesis being expanded to an appalling
+length.’’ One can well appreciate that Church would
+not knowingly tolerate imprecise formulations or
+proofs, let alone errors, and the published version
+shows that Turing went far to meet such demands
+while retaining his distinctive voice and original
+ways of thinking. Following an oral exam in May,
+on which his performance was noted as “Excellent’’, the Ph.D. itself was granted in June 1938. Turing made little use of the doctoral title in the following years, since it made no difference for his
+position at Cambridge. But it could have been useful for the start of an academic career in America.
+Von Neumann thought sufficiently highly of his
+mathematical talents to offer Turing a position as
+his assistant at the Institute. Curiously, at that
+time von Neumann showed no knowledge or appreciation of his work in logic. It was not until
+1939 that he was to recognize the fundamental importance of Turing’s work on computability. Then,
+toward the end of World War II, when von Neumann
+was engaged in the practical design and development of general purpose electronic digital computers in collaboration with the ENIAC team, he was
+to incorporate the key idea of Turing’s universal
+computing machine in a direct way.9
+Von Neumann’s offer was quite attractive, but
+Turing’s stay in Princeton had not been a personally happy one, and he decided to return home despite the uncertain prospects aside from his fellowship at King’s and in face of the brewing rumors
+of war. After publishing the thesis work he did no
+more on that topic and went on to other things. Not
+long after his return to England, he joined a course
+at the Government Code and Cypher School, and
+that was to lead to his top secret work during the
+war at Bletchley Park on breaking the German
+Enigma Code. This fascinating part of the story is
+told in full in Hodges’ biography [16], as is his subsequent career working to build actual computers, promote artificial intelligence, theorize about
+morphogenesis, and continue his work in mathematics. Tragically, this ended with his death in
+1954, a probable suicide.
+8 Hodges [16], p. 144.
+9
+Its suggested implementation is in the Draft report on the
+EDVAC put out by the ENIAC team and signed by von Neumann; cf. Hodges [16], pp. 302–303; cf. also ibid., p. 145,
+for von Neumann’s appreciation by 1939 of the significance
+of Turing’s work.
+
+NOVEMBER 2006
+
+The Thesis: Ordinal Logics10
+What Turing calls a logic is nowadays more
+usually called a formal system, i.e. one prescribed
+by an effective specification of a language, set of
+axioms and rules of inference. Where Turing used
+“L ’’ for logics I shall use “S ’’ for formal systems.
+Given an effective description of a sequence Sn n∈N
+(N = {0, 1, 2, . . . }) of formal systems all of which
+share the same language and rules
+ of inference, one
+can form a new system Sω = Sn (n ∈ N) , by taking the effective union of their axiom sets. If the
+sequence of Sn ’s is obtained by iterating an effective passage from one system to the next, then
+that iteration can be continued to form Sω+l, … and
+so on into the transfinite. This leads to the idea of
+an effective association of formal systems Sα with
+ordinals α. Clearly that can be done only for denumerable ordinals, but to deal with limits in an
+effective way, it turns out that we must work not
+with ordinals per se, but with notations for ordinals.
+In 1936, Church and Kleene [3] had introduced a
+system O of constructive ordinal notations, given
+by certain expressions in the λ-calculus. A variant
+of this uses numerical codes a for such expressions
+and associates with each α ∈ O a countable ordinal |α| . For baroque reasons, 1 was taken as the
+notation for 0, 2a as a notation for the successor
+of |a| , and 3 • 5e for the limit of the sequence |an | ,
+when this sequence is strictly increasing and when
+e is a code of a computable function ê with
+ê(n) = an for each n ∈ N . The least ordinal not of
+the form |a| for some a ∈ O is the analogue, in
+terms of effective computability, of the least uncountable ordinal ω1 and is usually denoted by
+ωCK
+1 , where “CK’’ refers to Church and Kleene. By
+an ordinal logic S ∗ = Sa a∈O is meant any means
+of effectively associating with each a ∈ O a formal
+system Sa . Note, for example, that there are many
+ways of forming a sequence of notations an whose
+limit is ω, given by all the different effectively
+computable strictly increasing subsequences of N .
+So at limit ordinals α < ωCK
+1 we will have infinitely
+many representations of α and thus also for its successors. An ordinal logic is said to be invariant if
+whenever |a| = |b| then Sa and Sb prove the same
+theorems.
+In general, given any effective means of passing
+from a system S to an extension S  of S , one can
+form an ordinal logic S ∗ = Sa a∈O which is such
+that for each a ∈ O and b = 2a the successor of
+a, Sb = Sa , and is further such that whenever
+a = 3 • 5e then Sa is the union of the sequence of
+Sê(n) for each n ∈ N . In particular, for systems
+whose language contains that of Peano Arithmetic
+P A , one can take S  to be S ∪ {ConS } , where ConS
+10
+
+The background to the material of this section in Gödel’s
+incompleteness theorems is explained in my piece for the
+Notices [11].
+
+NOTICES
+
+OF THE
+
+AMS
+
+5
+
+6
+
+formalizes the consistency statement for S ; the
+associated ordinal logic S ∗ thus iterates adjunction
+of consistency through all the constructive ordinal
+notations. If one starts with P A as the initial system it may be seen that each Sa is consistent and
+so Sa is strictly stronger than Sa by Gödel’s second
+incompleteness theorem. The consistency statements are expressible in ∀ (“for all’’)-form, i.e.,
+∀xR(x) where R is an effectively decidable predicate. So a natural question to raise is whether S ∗
+is complete for statements of that form, i.e.,
+whether whenever ∀xR(x) is true in N then it is
+provable in Sa for some a ∈ O . Turing’s main result for this ordinal logic was that that is indeed
+the case, in fact one can always choose such an a
+with |a| = ω + 1 . His ingenious method of proof
+was, given R , to construct a sequence ê(n) that denotes n as long as (∀x ≤ n)R(x) holds and that
+jumps to the successor of 3 • 5e when
+(∃x ≤ n)¬R(x) .11 Let b = 3 • 5e and a = 2b . Now if
+∀xR(x) is true, b ∈ O with |b| = ω. In Sa we can
+reason as follows: if ∀xR(x) were not true then Sb
+would be the union of systems that are eventually
+the same as Sa , so Sb would prove its own consistency and hence, by Gödel’s theorem, would be inconsistent. But Sa proves the consistency of Sb , so
+we must conclude that ∀xR(x) holds after all.
+Turing recognized that this completeness proof
+is disappointing because it shifts the question of
+whether a ∀-statement is true to the question
+whether a number a actually belongs to O . In fact,
+the general question, given a , is a ∈ O ?, turns out
+to be of higher logical complexity than any arithmetical statement, i.e., one formed by the unlimited iteration of universal and existential quantifiers, ∀ and ∃. Another main result of Turing’s
+thesis is that for quite general ordinal logics, S ∗
+can’t be both complete for statements in ∀-form
+and invariant. It is for these reasons that above I
+called his completeness results equivocal. Even so,
+what Turing really hoped to obtain was completeness for statements in ∀∃ (“for all, there exists’’)form. His reason for concentrating on these, which
+he called “number-theoretical problems’’, rather
+than considering arithmetical statements in general,
+is not clear. This class certainly includes many
+number-theoretical statements (in the usual sense
+of the word) of mathematical interest, e.g., those,
+such as the twin prime conjecture, that say that an
+effectively decidable set C of natural numbers is
+infinite. Also, as Turing pointed out, the question
+whether a given program for one of his machines
+computes a total function is in ∀∃-form. Of special note is his proof ([23], sec. 3) that the Riemann
+Hypothesis is a number-theoretical problem in Turing’s sense. This was certainly a novel observation
+
+for the time; actually, as shown by Georg Kreisel
+years later, it can even be expressed in ∀-form.12
+On the other hand, Turing’s class of numbertheoretical problems does not include such statements as finiteness of the number of solutions of
+a diophantine equation (∃∀) or the statement of
+Waring’s problem (∀∃∀).
+In section 4 Turing introduced a new idea that
+was to change the face of the general theory of computation (also known as recursion theory) but the
+only use he made of it there was curiously inessential. His aim was to produce an arithmetical problem that is not number-theoretical in his sense, i.e.,
+not in ∀∃-form. This is trivial by a diagonalization
+argument, since there are only countably many effective relations R(x, y) of which we could say that
+∀x∃yR(x, y) holds. Turing’s way of dealing with
+this, instead, is through the new notion of computation relative to an oracle. As he puts it:
+
+11 Note that e is defined in terms of itself; this is made pos-
+
+12 A relatively perspicuous representation in that form
+
+sible by Kleene’s index form of the recursion theorem.
+
+may be found in Davis et al. [6] p. 335.
+
+NOTICES
+
+OF THE
+
+Let us suppose that we are supplied
+with some unspecified means of solving number-theoretical [i.e., ∀∃] problems; a kind of oracle as it were. … With
+the help of the oracle we could form a
+new kind of machine (call them o machines), having as one of its fundamental processes that of solving a given
+number-theoretic problem.
+He then showed that the problem of determining
+whether an o -machine terminates on any given
+input is an arithmetical problem not computable
+by any o -machine, and hence not solvable by the
+oracle itself. Turing did nothing further with the
+idea of o -machines, either in this paper or afterward. In 1944 Emil Post [20] took it as his basic notion for a theory of degrees of unsolvability, crediting Turing with the result that for any set of
+natural numbers there is another of higher degree
+of unsolvability. This transformed the notion of
+computability from an absolute notion into a relative one that would lead to entirely new developments and eventually to vastly generalized forms
+of recursion theory. Some of the basic ideas and
+results of the theory of effective reducibility of
+the membership problem for one set of numbers
+to another inaugurated by Turing and Post are explained in the article by Martin Davis in this issue
+of the Notices.
+There are further interesting suggestions and
+asides in the thesis, such as consideration of possible constructive analogues of the Continuum Hypothesis. Finally (as also mentioned by Barry Cooper
+in his review article), it contained provocative speculations concerning intuition versus technical
+
+AMS
+
+VOLUME 53, NUMBER 10
+
+ingenuity in mathematical reasoning. The relevance,
+according to Turing is that:
+When we have an ordinal logic, we are
+in a position to prove number-theoretic
+theorems by the intuitive steps of recognizing [natural numbers as notations
+for ordinals] …We want it to show quite
+clearly when a step makes use of intuition and when it is purely formal… It
+must be beyond all reasonable doubt
+that the logic leads to correct results
+whenever the intuitive steps [i.e., recognition of ordinals] are correct.
+This Turing had clearly accomplished with his formulation of the notion of ordinal logic and the
+construction of the particular S ∗ obtained by iterating consistency statements.
+One reason that the reception of Turing’s paper
+may have been so limited is that (no doubt at
+Church’s behest) it was formulated in terms of the
+λ-calculus, which makes expressions for ordinals
+and formal systems very hard to understand. He
+could instead have followed Kleene, who wrote in
+his retrospective history [17]: “I myself, perhaps unduly influenced by rather chilly receptions from audiences around 1933–35 to disquisitions on λ definability, chose, after general recursiveness had
+appeared, to put my work in that format. I cannot
+complain about my audiences after 1935.’’
+
+Ordinal Logics Redux
+The problems left open in Turing’s thesis were
+attacked in my 1962 paper, “Transfinite recursive
+progressions of axiomatic theories’’ [7]. The title
+contains my rechristening of “ordinal logics’’ in
+order to give a more precise sense of the subject
+matter. In the interests of perspicuity and in order
+to explain what Turing had accomplished, I also recast all the notions in terms of general recursive
+functions and recursive notions for ordinals rather
+than the λ-calculus. Next I showed that Turing’s progression based on iteration of consistency statements is not complete for true ∀∃ statements,
+contrary to his hope. In fact, the same holds for the
+even stronger progression obtained by iterating
+adjunction to a system S of the local reflection
+principle for S . This is a scheme that formalizes,
+for each arithmetical sentence A , that if A is provable in S then A (is true). Then I showed that a progression S (U) based on the iteration of the uniform
+reflection principle is complete for all true arithmetical sentences. The latter principle is a scheme
+that formalizes, given S and a formula A(x) that if
+A(n) is provable in S for each n, then ∀xA(x) (is
+true). One can also find a path P through O along
+which every true arithmetical sentence is provable
+in the progression S (U) . On the other hand, invariance fails badly in the sense that there are paths
+NOVEMBER 2006
+
+P  through O for which there are true sentences
+in ∀-form not provable along that path, as shown
+in my paper with Spector [12]. The recent book Inexhaustibility [13] by Torkel Franzén contains an
+accessible introduction to [7], and his article [14]
+gives an interesting explanation (shorn of the offputting details) of what makes Turing’s and my
+completeness results work.
+The problem raised by Turing of recognizing
+which expressions (or numbers) are actually notations for ordinals is dealt with in part through the
+concept of autonomous progressions of theories, obtained by imposing a boot-strap procedure. That
+allows one to go to a system Sa only if one already
+has a proof in a previously accepted system Sb
+that a ∈ O (or that a recursive ordering of order
+type corresponding to a is a well-ordering). Such
+progressions are not complete but have been used
+to propose characterizations of certain informal
+concepts of proof, such as that of finitist proof
+(Kreisel [18], [19]) and predicative proof (Feferman
+[8], [9]).
+References
+[1] A. CHURCH, An unsolvable problem of elementary number theory, Amer. J. of Math. 58 (1936), 345–363.
+Reprinted in Davis [5].
+[2] ——— , A note on the Entscheidungsproblem, J. Symbolic Logic 1 (1936), 40–41; correction, ibid., 101–102.
+Reprinted in Davis [5].
+[3] A. CHURCH and S. C. KLEENE, Formal definitions in the
+theory of ordinal numbers, Fundamenta Mathematicae 28 (1936), 11–21.
+[4] A. M. COHEN and M. J. E. MAYHEW, On the difference
+π (x) − li(x) , Proc. London Math. Soc. 18(3) (1968),
+691–713; reprinted in Turing [24].
+[5] M. DAVIS, The Undecidable. Basic Papers on Undecidable Propositions, Unsolvable Problems and Computable
+Functions, Raven Press, Hewlett, NY, (1965).
+[6] M. DAVIS, YU. MATIJASEVI C̆, and J. ROBINSON, Hilbert’s
+tenth problem. Diophantine equations: positive aspects of a negative solution, Mathematical Developments Arising From Hilbert Problems, (F. Browder, ed.),
+Amer. Math. Soc., Providence, RI, (1976), 323–378.
+[7] S. FEFERMAN, Transfinite recursive progressions of axiomatic theories, J. Symbolic Logic 27 (1962), 259–316.
+[8] ——— , Systems of predicative analysis, J. Symbolic
+Logic 29 (1964), 1–30.
+[9] ——— , Autonomous transfinite progressions and the
+extent of predicative mathematics, Logic, Methodology
+and Philosophy of Science III, (B. van Rootselaar and J.
+F. Staal, eds.), North-Holland, Amsterdam (1968),
+121–135.
+[10] ——— , Turing in the land of O(z) , in Herken [15],
+113–147.
+[11] ——— , The impact of the incompleteness theorems
+on mathematics, Notices Amer. Math. Soc. 53 (April
+2006), 434–439.
+[12] S. FEFERMAN and C. SPECTOR, Incompleteness along
+paths in recursive progressions of theories, J. Symbolic
+Logic 27 (1962), 383–390.
+
+NOTICES
+
+OF THE
+
+AMS
+
+7
+
+[13] T. FRANZÉN, Inexhaustibility. A non-exhaustive treatment, Lecture Notes in Logic 28 (2004), Assoc. for
+Symbolic Logic, A. K. Peters, Ltd., Wellesley (distribs.).
+[14] ——— , Transfinite progressions: A second look at completeness, Bull. Symbolic Logic 10 (2004), 367–389.
+[15] R. HERKEN (ed.), The Universal Turing Machine. A
+Half-Century Survey, Oxford University Press, Oxford
+(1988).
+[16] A. HODGES, Alan Turing: The Enigma, Simon and
+Schuster, New York, 1983. New edition, Vintage, London, 1992.
+[17] S. C. KLEENE, Origins of recursive function theory,
+Ann. History of Computing 3 (1981), 52–67.
+[18] G. KREISEL, Ordinal logics and the characterization of
+informal concepts of proof, Proc. International Congress of Mathematicians at Edinburgh (1958), 289–299.
+[19] ——— , Principles of proof and ordinals implicit in
+given concepts, Intuitionism and Proof Theory, (J. Myhill et al., eds.), North-Holland, Amsterdam, (1970)
+489–516.
+[20] E. POST, Recursively enumerable sets and their decision problems, Bull. Amer. Math. Soc. 50 (1944),
+284–316.
+[21] A. M. TURING, On computable numbers, with an application to the Entscheidungsproblem, Proc. London
+Math. Soc. 42(2) (1936–37), 230–265; correction, ibid.
+43 (1937), 544–546. Reprinted in Davis [5] and Turing [25].
+[22] ——— , Computability and λ-definability, J. Symbolic
+Logic 2 (1937), 153–163. Reprinted in Davis [5] and Turing [25].
+[23] ——— , Systems of logic based on ordinals, Proc. London Math. Soc. (2) (1939), 161–228. Reprinted in Davis
+[5] and Turing [25].
+[24] ——— , Pure Mathematics (J. L. Britton, ed.), Collected
+Works of A. M. Turing, Elsevier Science Publishers,
+Amsterdam, (1992).
+[25] ——— , Mathematical Logic (R. O. Gandy and C. E. M.
+Yates, eds.), Collected Works of A. M. Turing, Elsevier
+Science Publishers, Amsterdam, (2001).
+
+8
+
+NOTICES
+
+OF THE
+
+AMS
+
+VOLUME 53, NUMBER 10
+
+
